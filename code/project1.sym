@@ -1,0 +1,99 @@
+004     @WRITE_PROGRAM_MEMORY8.P1
+004-005 @READ_PROGRAM_MEMORY8.P2
+008     PSP_DATA
+015     CCP_1_LOW
+015     CCP_1
+016     CCP_1_HIGH
+01B     CCP_2_LOW
+01B     CCP_2
+01C     CCP_2_HIGH
+020     @SCRATCH
+021     @SCRATCH
+021     _RETURN_
+022     @SCRATCH
+023     @SCRATCH
+024     strtok.save
+025     caracter
+026     instrucao
+027-028 i
+029-03C cuv
+03D     @TRIS_C
+03E-051 MAIN.wordHB
+052-065 MAIN.wordMM
+066-079 MAIN.user
+07A     MAIN.@SCRATCH1
+0A0-0B3 MAIN.user2
+0B4     nota.note
+0B4     write_word.word
+0B4     transfere_inst.inst
+0B4     Manual.@SCRATCH1
+0B4     HappyBirthday.@SCRATCH1
+0B5     transfere_carac.carac
+0B5     strlen.s
+0B5     nota.@SCRATCH1
+0B5     Manual.@SCRATCH2
+0B6     @delay_ms1.P1
+0B6     strlen.sc
+0B6     @delay_us1.P1
+0B7     strlen.@SCRATCH1
+10D-10E @READ_PROGRAM_MEMORY8.P1
+10D-10E @WRITE_PROGRAM_MEMORY8.P2
+
+ROM Allocation:
+000004  @const726.call
+00000C  @const727.call
+000014  @const728.call
+00001C  @const729.call
+000024  @const730.call
+00002D  @const731.call
+000035  @const732.call
+00003D  @delay_ms1
+000050  activa
+00005E  transfere_inst
+000069  init_LCD
+000087  write_word
+00008C  strlen
+0000AA  transfere_carac
+0000BD  @delay_us1
+0000CD  nota
+00021C  HappyBirthday
+00048E  Manual
+0005C0  MAIN
+0005C0  @cinit1
+0005CA  @cinit2
+0487  sss
+
+Project Directory:
+    C:\Users\Karla\UTCN\erasmus\_IPCB\Micro\TP1\code\
+
+Project Files:
+    project1.c                                              [15-Apr-25 11:03  CRC=11667A7B]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F874.h [12-Nov-13 15:35  CRC=ADB5114D]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\string.h [14-Jul-11 11:13  CRC=23EDEC8F]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stddef.h [16-Jul-10 10:27  CRC=897CEC6C]
+    ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\ctype.h [03-Jan-08 14:55  CRC=2D1F019F]
+
+Source signature=C6C46801
+
+Units:
+    project1 (main)
+
+Compiler Settings:
+    Processor:      PIC16F874
+    Pointer Size:   8
+    ADC Range:      0-255
+    Opt Level:      9
+    Short,Int,Long: UNSIGNED: 1,8,16
+    Float,Double:   32,32
+
+Output Files:
+    XREF file:   project1.xsym
+    Errors:      project1.err
+    Ext Symbols: project1.esym
+    INHX8:       project1.hex
+    Symbols:     project1.sym
+    List:        project1.lst
+    Debug/COFF:  project1.cof
+    Project:     project1.ccspjt
+    Call Tree:   project1.tre
+    Statistics:  project1.STA

@@ -1,0 +1,66 @@
+
+ROM used:   1655/4096 (40%)
+            1655/4096 (40%) including unused fragments
+
+            1.1 Average locations per line
+            4.8 Average locations per statement
+
+RAM used:   32/191 (17%) at main() level
+            120/191 (63%) worst case
+
+Stack used: 4 worst case (4 in main + 0 for interrupts)
+Stack size: 8
+
+Lines Stmts  %   Files
+----- ----- ---  -----
+  353   223  64  project1.c
+  639     0   0  ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Devices\16F874.h
+  423   125  36  ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\string.h
+   32     0   0  ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\stddef.h
+   28     0   0  ..\..\..\..\..\..\..\..\Program Files (x86)\PICC\Drivers\ctype.h
+----- -----
+ 1475   348 Total
+
+Page ROM  %  RAM   Vol Diff  Functions:
+---- --- --- ---   --- ----  ----------
+ Inline         3   129  4.6  strlen
+0     19   1    1   226  6.4  @delay_ms1
+0     16   1    1             @delay_us1
+0     14   1    0    48  1.1  activa
+ Inline         1    54  1.2  transfere_carac
+0     11   1    1    54  1.2  transfere_inst
+0     30   2    0   152  1.8  init_LCD
+0     54   3    1   158  3.5  write_word
+0    335  20    2  1317  3.9  nota
+0    306  18    2  1072  2.9  Manual
+0      8   0    0  1072  2.9  @const726
+0      8   0    0             @const727
+0      8   0    0             @const728
+0      8   0    0             @const729
+0      9   1    0             @const730
+0      8   0    0             @const731
+0      8   0    0             @const732
+0    626  38    1  4412  6.0  HappyBirthday
+0    183  11    1   627  4.0  MAIN
+ Inline         0   627  4.0  @cinit1
+
+Program metrics:
+    Functions               13
+    Statements              348
+    Comments                327
+    Volume (V)              14298
+    Difficulty (D)          44.9
+    Effort to implement (E) 641385
+    Time to implement (T)   9 hours, 54 minutes
+    Est Delivered Bugs (B)  2
+    Cyclomatic Complexity   58
+    Maintainability (MI)    130
+
+ Segment     Used  Free
+-----------  ----  ----
+00000-00003     4  0  
+00004-007FF  1651  393  
+00800-00FFF     0  2048  
+
+
+

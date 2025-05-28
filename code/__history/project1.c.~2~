@@ -1,0 +1,125 @@
+#include <16F877A.h>
+
+#fuses NOWDT,HS, NOPUT, NOPROTECT, NODEBUG, NOLVP, NOCPD, NOWRT, BROWNOUT
+
+#use delay(clock=20000000)
+
+void nota(char note[], int n)
+{
+    if(strcmp(note, "do") == 0) {
+        output_high(PIN_B0);
+        delay_us(1953 * n);
+        output_low(PIN_B0);
+        delay_us(1953 * n);
+    }
+    else if(strcmp(note, "re") == 0) {
+        output_high(PIN_B0);
+        delay_us(1709 * n);
+        output_low(PIN_B0);
+        delay_us(1709 * n);
+    }
+    else if(strcmp(note, "mi") == 0) {
+        output_high(PIN_B0);
+        delay_us(1519 * n);
+        output_low(PIN_B0);
+        delay_us(1519 * n);
+    }
+    else if(strcmp(note, "fa") == 0) {
+        output_high(PIN_B0);
+        delay_us(1367 * n);
+        output_low(PIN_B0);
+        delay_us(1367 * n);
+    }
+    else if(strcmp(note, "sol") == 0) {
+        output_high(PIN_B0);
+        delay_us(1243 * n);
+        output_low(PIN_B0);
+        delay_us(1243 * n);
+    }
+    else if(strcmp(note, "la") == 0) {
+        output_high(PIN_B0);
+        delay_us(1139 * n);
+        output_low(PIN_B0);
+        delay_us(1139 * n);
+    }
+    else if(strcmp(note, "si") == 0) {
+        output_high(PIN_B0);
+        delay_us(1052 * n);
+        output_low(PIN_B0);
+        delay_us(1052 * n);
+        }
+}
+    
+
+
+void Manual()
+{
+   if(input(PIN_C0))
+      nota("do", 1); 
+    
+  if(input(PIN_C1))
+    nota("re", 1); 
+    
+  if(input(PIN_C2))
+     nota("mi", 1);
+     
+  if(input(PIN_C3))
+     nota("fa", 1);
+  
+  if(input(PIN_C4))
+    nota("sol", 1); 
+  
+  if(input(PIN_C5))
+    nota("la", 1);
+  
+  if(input(PIN_B6))
+    nota("si", 1); 
+}
+
+
+
+void HappyBirthday() {
+    nota("do", 500000);
+    nota("do", 250000);
+    nota("re", 500000);
+    nota("do", 500000);
+    nota("fa", 500000);
+    nota("mi", 1000000);
+    
+    nota("do", 500000);
+    nota("do", 250000);
+    nota("re", 500000);
+    nota("do", 500000);
+    nota("sol", 500000);
+    nota("fa", 1000000);
+    
+    nota("do", 500000);
+    nota("do", 250000);
+    nota("do", 500000);
+    nota("la", 500000);
+    nota("fa", 500000);
+    nota("mi", 500000);
+    nota("re", 1000000);
+    
+    nota("si", 500000);
+    nota("si", 250000);
+    nota("la", 500000);
+    nota("fa", 500000);
+    nota("sol", 500000);
+    nota("fa", 1000000);
+}
+
+void main()
+{
+   while(1==1)
+   {    
+         if(input(PIN_B7))
+      {
+         HappyBirthday();
+      }
+      else 
+      Manual();      
+   }
+      
+}
+     

@@ -1,0 +1,304 @@
+#include <16F877A.h>
+#include <string.h>
+
+#fuses NOWDT,HS, NOPUT, NOPROTECT, NODEBUG, NOLVP, NOCPD, NOWRT, BROWNOUT
+
+#use delay(clock=20000000)
+
+#define RS     PIN_E0
+#define ENABLE PIN_E1
+//#define LSB PIN_A2
+
+int8 caracter;
+int8 instrucao;
+
+void activa()
+{
+  output_high(ENABLE);
+  delay_ms(20);
+  output_low(ENABLE);
+}
+
+
+void transfere_carac(int8 carac)
+{
+  output_high(RS);
+  output_d(carac);
+  activa();
+}
+
+
+void transfere_inst(int8 inst)
+{
+  output_low(RS);
+  output_d(inst);
+  activa();
+}
+
+
+void init_LCD()
+{
+   instrucao=56;
+   transfere_inst(instrucao);
+   instrucao=1;
+   transfere_inst(instrucao);
+   instrucao=12;
+   transfere_inst(instrucao);
+   instrucao=2;                // colocação do cursor na 1º linha
+   transfere_inst(instrucao);
+}
+
+void write_word(char word[])
+{
+   for(i=0; i<strlen(word); i++)
+      {
+         caracter = word[i];
+         transfere_carac(caracter);
+         delay_ms(500);
+      }
+      delay_ms(500);
+}
+
+
+
+void nota(char note[])
+{
+  if(note == "do")
+  {
+     output_high(PIN_B0);
+    delay_us(1953);
+    output_low(PIN_B0);
+    delay_us(1953);
+  }
+  else 
+  if(note == "re")
+  {
+     output_high(PIN_B0);
+    delay_us(1709);
+    output_low(PIN_B0);
+    delay_us(1709);
+  }
+  else
+  if(note == "mi")
+  {
+     output_high(PIN_B0);
+    delay_us(1519);
+    output_low(PIN_B0);
+    delay_us(1519);
+  }
+  else
+  if(note == "fa")
+  {
+     output_high(PIN_B0);
+    delay_us(1367);
+    output_low(PIN_B0);
+    delay_us(1367);
+  }
+  else
+  if(note == "sol")
+  {
+     output_high(PIN_B0);
+    delay_us(1243);
+    output_low(PIN_B0);
+    delay_us(1243);
+  }
+  else
+  if(note == "la")
+  {
+     output_high(PIN_B0);
+    delay_us(1139);
+    output_low(PIN_B0);
+    delay_us(1139);
+  }
+  else
+  if(note == "si")
+  {
+     output_high(PIN_B0);
+    delay_us(1052);
+    output_low(PIN_B0);
+    delay_us(1052);
+  }
+  else
+  if(note == "do2")
+  {
+     output_high(PIN_B0);
+    delay_us(947);
+    output_low(PIN_B0);
+    delay_us(947);
+  }
+  else
+  if(note == "la#")
+  {
+     output_high(PIN_B0);
+    delay_us(1064);
+    output_low(PIN_B0);
+    delay_us(1064);
+  }
+}
+    
+
+
+void Manual()
+{
+   if(input(PIN_C0))
+      nota("do"); 
+    
+  if(input(PIN_C1))
+    nota("re"); 
+    
+  if(input(PIN_C2))
+     nota("mi");
+     
+  if(input(PIN_C3))
+     nota("fa");
+  
+  if(input(PIN_C4))
+    nota("sol"); 
+  
+  if(input(PIN_C5))
+    nota("la");
+  
+  if(input(PIN_B6))
+    nota("si"); 
+}
+
+
+
+void HappyBirthday() {
+    
+    ////1
+    for(int i = 1; i <= 64; i ++) // k = 64
+      nota("do");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 64; i ++) // k = 64
+      nota("do");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 73*2; i ++) // k = 73
+      nota("re");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 64; i ++) // k = 64
+      nota("do");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 91; i ++) // k = 91
+      nota("fa");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 82*3; i ++) // k = 82
+      nota("mi");
+    delay(100000); // 100ms silence
+    
+    ////2
+    for(int i = 1; i <= 64; i ++) // k = 64
+      nota("do");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 64; i ++) // k = 64
+      nota("do");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 73*2; i ++) // k = 73
+      nota("re");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 64; i ++) // k = 64
+      nota("do");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 100; i ++) // k = 100
+      nota("sol");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 91*3; i ++) // k = 91
+      nota("fa");
+    delay(100000); // 100ms silence
+    
+    ////3
+    for(int i = 1; i <= 64; i ++) // k = 64
+      nota("do");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 64; i ++) // k = 64
+      nota("do");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 132; i ++) // k = 132
+      nota("do2");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 110; i ++) // k = 110
+      nota("la");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 91; i ++) // k = 91
+      nota("fa");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 82; i ++) // k = 82
+      nota("mi");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 73*2; i ++) // k = 73
+      nota("re");
+    delay(100000); // 100ms silence
+    
+    ////5
+    for(int i = 1; i <= 117; i ++) // k = 117  bdialcbhbdhc
+      nota("la#");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 117; i ++) // k = 117  bchkdlasgbvlia
+      nota("la#");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 110*2; i ++) // k = 110
+      nota("la");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 91; i ++) // k = 91
+      nota("fa");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 100; i ++) // k = 100
+      nota("sol");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 91*3; i ++) // k = 91
+      nota("fa");
+    delay(100000); // 100ms silence
+}
+
+void main()
+{
+
+   set_tris_d(0x00);
+   init_LCD();
+   
+   char word_HB[20]= "Happy Birthday!";
+   char word_MM[20]= "Manual mode";
+
+
+   while(1==1)
+   {    
+      // start on 1º line
+      instrucao=128;                
+      transfere_inst(instrucao);
+      
+      if(input(PIN_B7))
+      {
+         write_word(word_HB);
+         HappyBirthday();
+      }
+      else 
+      {
+         write_word(word_MM);
+         Manual();
+      }
+            
+   }
+      
+}
+     

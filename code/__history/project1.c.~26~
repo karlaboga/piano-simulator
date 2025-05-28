@@ -1,0 +1,358 @@
+#include <16F877A.h>
+#include <string.h> 
+
+#fuses NOWDT,HS, NOPUT, NOPROTECT, NODEBUG, NOLVP, NOCPD, NOWRT, BROWNOUT
+
+#use delay(clock=20000000)
+#define RS     PIN_E0
+#define ENABLE PIN_E1
+//#define LSB PIN_A2
+
+int8 caracter;
+int8 instrucao;
+int16 i;
+char cuv[20];
+
+void activa()
+{
+  output_high(ENABLE);
+  delay_ms(10);
+  output_low(ENABLE);
+}
+
+
+void transfere_carac(int8 carac)
+{
+  output_high(RS);
+  output_d(carac);
+  activa();
+}
+
+
+void transfere_inst(int8 inst)
+{
+  output_low(RS);
+  output_d(inst);
+  activa();
+}
+
+
+void init_LCD()
+{
+   instrucao=56;
+   transfere_inst(instrucao);
+   instrucao=1;
+   transfere_inst(instrucao);
+   instrucao=12;
+   transfere_inst(instrucao);
+   instrucao=2;                
+   transfere_inst(instrucao);
+}
+
+void write_word(char word[])
+{
+   for(i=0; i<strlen(word); i++)
+      {
+         caracter = word[i];
+         transfere_carac(caracter);
+        // delay_ms(500);
+      }
+      delay_ms(250);
+}
+
+
+void nota(int note)
+{
+  switch (note)
+  {
+    case 1: // Do
+      output_high(PIN_B0);
+      delay_us(1953);
+      output_low(PIN_B0);
+      delay_us(1953);
+      break;
+
+    case 2: // Re
+      output_high(PIN_B0);
+      delay_us(1709);
+      output_low(PIN_B0);
+      delay_us(1709);
+      break;
+
+    case 3: // Mi
+      output_high(PIN_B0);
+      delay_us(1519);
+      output_low(PIN_B0);
+      delay_us(1519);
+      break;
+
+    case 4: // Fa
+      output_high(PIN_B0);
+      delay_us(1367);
+      output_low(PIN_B0);
+      delay_us(1367);
+      break;
+
+    case 5: // Sol
+      output_high(PIN_B0);
+      delay_us(1243);
+      output_low(PIN_B0);
+      delay_us(1243);
+      break;
+
+    case 6: // La
+      output_high(PIN_B0);
+      delay_us(1139);
+      output_low(PIN_B0);
+      delay_us(1139);
+      break;
+
+    case 7: // Si
+      output_high(PIN_B0);
+      delay_us(1052);
+      output_low(PIN_B0);
+      delay_us(1052);
+      break;
+
+    case 8: // Do2
+      output_high(PIN_B0);
+      delay_us(947);
+      output_low(PIN_B0);
+      delay_us(947);
+      break;
+
+    case 9: // La#
+      output_high(PIN_B0);
+      delay_us(1064);
+      output_low(PIN_B0);
+      delay_us(1064);
+      break;
+
+    default:
+      // Invalid note
+      break;
+  }
+}
+
+void Manual()
+{
+  if(input(PIN_C0))
+  { 
+  cuv=" DO";
+  write_word(cuv);
+  }
+  while (input(PIN_C0)) {
+    nota(1); // Do
+  }
+  if(input(PIN_C1))
+  { 
+  cuv=" RE";
+  write_word(cuv);
+  }
+  while(input(PIN_C1)) {
+    nota(2); // Re
+  }
+  if(input(PIN_C2))
+  { 
+  cuv=" MI";
+  write_word(cuv);
+  }
+  while(input(PIN_C2)) {
+    nota(3); // Mi
+  } 
+  if(input(PIN_C3))
+  { 
+  cuv=" FA";
+  write_word(cuv);
+  }
+  while(input(PIN_C3)) {
+    nota(4); // Fa
+  } 
+  if(input(PIN_C4))
+  { 
+  cuv=" SOL";
+  write_word(cuv);
+  }
+  while(input(PIN_C4)) {
+    nota(5); // Sol
+  } 
+  if(input(PIN_C5))
+  { 
+  cuv=" LA";
+  write_word(cuv);
+  }
+  while(input(PIN_C5)) {
+    nota(6); // La
+  } 
+  if(input(PIN_B6))
+  { 
+  cuv=" SI";
+  write_word(cuv);
+  }
+  while(input(PIN_B6)) {
+    nota(7); // Si
+  }
+}
+
+void HappyBirthday()
+{
+  for(i = 1; i <= 64; i++) // k = 64
+    nota(1); // Do
+  delay_us(100000);
+
+  for(i = 1; i <= 64; i++) // k = 64
+    nota(1); // Do
+  delay_us(100000);
+
+  for(i = 1; i <= 73*2; i++) // k = 73
+    nota(2); // Re2
+  delay_us(100000);
+
+  for(i = 1; i <= 64; i++) // k = 64
+    nota(1); // Do
+  delay_us(100000);
+
+  for(i = 1; i <= 91; i++) // k = 91
+    nota(4); // Fa
+  delay_us(100000);
+
+  for(i = 1; i <= 82*3; i++) // k = 82
+    nota(3); // Mi
+  delay_us(100000);
+  
+  if(input(PIN_B7)==0)
+    goto sss;
+
+  for(i = 1; i <= 64; i++) // k = 64
+    nota(1); // Do
+  delay_us(100000);
+
+  for(i = 1; i <= 64; i++) // k = 64
+    nota(1); // Do
+  delay_us(100000);
+
+  for(i = 1; i <= 73*2; i++) // k = 73
+    nota(2); // Re
+  delay_us(100000);
+
+  for(i = 1; i <= 64; i++) // k = 64
+    nota(1); // Do
+  delay_us(100000);
+
+  for(i = 1; i <= 100; i++) // k = 100
+    nota(5); // Sol
+  delay_us(100000);
+
+  for(i = 1; i <= 91*3; i++) // k = 91
+    nota(4); // Fa
+  delay_us(100000);
+
+ if(input(PIN_B7)==0)
+    goto sss;
+    
+  for(i = 1; i <= 64; i++) // k = 64
+    nota(1); // Do
+  delay_us(100000);
+
+  for(i = 1; i <= 64; i++) // k = 64
+    nota(1); // Do
+  delay_us(100000);
+
+  for(i = 1; i <= 132*2; i++) // k = 132
+    nota(8); // Do2
+  delay_us(100000);
+
+  for(i = 1; i <= 110; i++) // k = 110
+    nota(6); // La
+  delay_us(100000);
+
+  for(i = 1; i <= 91; i++) // k = 91
+    nota(4); // Fa
+  delay_us(100000);
+
+  for(i = 1; i <= 82; i++) // k = 82
+    nota(3); // Mi
+  delay_us(100000);
+
+  for(i = 1; i <= 73*2; i++) // k = 73
+    nota(2); // Re2
+  delay_us(100000);
+
+ if(input(PIN_B7)==0)
+    goto sss;
+    
+  for(i = 1; i <= 117; i++) // k = 117
+    nota(9); // La#
+  delay_us(100000);
+
+  for(i = 1; i <= 117; i++) // k = 117
+    nota(9); // La#
+  delay_us(100000);
+
+  for(i = 1; i <= 110*2; i++) // k = 110
+    nota(6); // La2
+  delay_us(100000);
+
+  for(i = 1; i <= 91; i++) // k = 91
+    nota(4); // Fa
+  delay_us(100000);
+
+  for(i = 1; i <= 100; i++) // k = 100
+    nota(5); // Sol
+  delay_us(100000);
+
+  for(i = 1; i <= 91*3; i++) // k = 91
+    nota(4); // Fa3
+  sss:delay_us(100000);
+  
+
+}
+ 
+void main()
+{
+   set_tris_d(0x00);
+   init_LCD();
+   
+   char wordHB[20]= "Happy Birthday!!";
+   char wordMM[20]= "Manual";
+   char user[20]="Choose SW1-HB";
+   char user2[20]="Or SW0-Manual";
+   
+   instrucao=128;                
+   transfere_inst(instrucao); 
+   write_word(user);
+   
+   instrucao=192;                
+   transfere_inst(instrucao);
+   write_word(user2);
+   
+   delay_ms(5000);
+  while(1)
+  {
+
+     instrucao=128;                
+     transfere_inst(instrucao);  //setting the cursor in the beging of the first row
+     
+     instrucao=1;                
+     transfere_inst(instrucao);  //errase
+     
+     
+     
+     
+     
+    if(input(PIN_B7)) // checking the state of the switch
+    {
+    
+      write_word(wordHB); 
+      //goto sss;//write "Happy Birthday" in LCD
+      //sss: 
+      HappyBirthday();
+    
+    }
+    else
+    {
+      write_word(wordMM); //write "Manual Mode" in LCD
+      Manual();
+    }
+  }
+}

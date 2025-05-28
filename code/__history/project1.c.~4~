@@ -1,0 +1,230 @@
+#include <16F877A.h>
+
+#fuses NOWDT,HS, NOPUT, NOPROTECT, NODEBUG, NOLVP, NOCPD, NOWRT, BROWNOUT
+
+#use delay(clock=20000000)
+
+void nota(char note[])
+{
+  if(note == "do")
+  {
+     output_high(PIN_B0);
+    delay_us(1953);
+    output_low(PIN_B0);
+    delay_us(1953);
+  }
+  else 
+  if(note == "re")
+  {
+     output_high(PIN_B0);
+    delay_us(1709);
+    output_low(PIN_B0);
+    delay_us(1709);
+  }
+  else
+  if(note == "mi")
+  {
+     output_high(PIN_B0);
+    delay_us(1519);
+    output_low(PIN_B0);
+    delay_us(1519);
+  }
+  else
+  if(note == "fa")
+  {
+     output_high(PIN_B0);
+    delay_us(1367);
+    output_low(PIN_B0);
+    delay_us(1367);
+  }
+  else
+  if(note == "sol")
+  {
+     output_high(PIN_B0);
+    delay_us(1243);
+    output_low(PIN_B0);
+    delay_us(1243);
+  }
+  else
+  if(note == "la")
+  {
+     output_high(PIN_B0);
+    delay_us(1139);
+    output_low(PIN_B0);
+    delay_us(1139);
+  }
+  else
+  if(note == "si")
+  {
+     output_high(PIN_B0);
+    delay_us(1052);
+    output_low(PIN_B0);
+    delay_us(1052);
+  }
+  else
+  if(note == "do2")
+  {
+     output_high(PIN_B0);
+    delay_us(947);
+    output_low(PIN_B0);
+    delay_us(947);
+  }
+  else
+  if(note == "la#")
+  {
+     output_high(PIN_B0);
+    delay_us(1064);
+    output_low(PIN_B0);
+    delay_us(1064);
+  }
+}
+    
+
+
+void Manual()
+{
+   if(input(PIN_C0))
+      nota("do"); 
+    
+  if(input(PIN_C1))
+    nota("re"); 
+    
+  if(input(PIN_C2))
+     nota("mi");
+     
+  if(input(PIN_C3))
+     nota("fa");
+  
+  if(input(PIN_C4))
+    nota("sol"); 
+  
+  if(input(PIN_C5))
+    nota("la");
+  
+  if(input(PIN_B6))
+    nota("si"); 
+}
+
+
+
+void HappyBirthday() {
+    
+    ////1
+    for(int i = 1; i <= 64; i ++) // k = 64
+      nota("do");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 64; i ++) // k = 64
+      nota("do");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 73*2; i ++) // k = 73
+      nota("re");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 64; i ++) // k = 64
+      nota("do");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 91; i ++) // k = 91
+      nota("fa");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 82*3; i ++) // k = 82
+      nota("mi");
+    delay(100000); // 100ms silence
+    
+    ////2
+    for(int i = 1; i <= 64; i ++) // k = 64
+      nota("do");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 64; i ++) // k = 64
+      nota("do");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 73*2; i ++) // k = 73
+      nota("re");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 64; i ++) // k = 64
+      nota("do");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 100; i ++) // k = 100
+      nota("sol");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 91*3; i ++) // k = 91
+      nota("fa");
+    delay(100000); // 100ms silence
+    
+    ////3
+    for(int i = 1; i <= 64; i ++) // k = 64
+      nota("do");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 64; i ++) // k = 64
+      nota("do");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 132; i ++) // k = 132
+      nota("do2");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 110; i ++) // k = 110
+      nota("la");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 91; i ++) // k = 91
+      nota("fa");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 82; i ++) // k = 82
+      nota("mi");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 73*2; i ++) // k = 73
+      nota("re");
+    delay(100000); // 100ms silence
+    
+    ////5
+    for(int i = 1; i <= 117; i ++) // k = 117  bdialcbhbdhc
+      nota("la#");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 117; i ++) // k = 117  bchkdlasgbvlia
+      nota("la#");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 110*2; i ++) // k = 110
+      nota("la");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 91; i ++) // k = 91
+      nota("fa");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 100; i ++) // k = 100
+      nota("sol");
+    delay(100000); // 100ms silence
+    
+    for(int i = 1; i <= 91*3; i ++) // k = 91
+      nota("fa");
+    delay(100000); // 100ms silence
+}
+
+void main()
+{
+   while(1==1)
+   {    
+         if(input(PIN_B7))
+      {
+         HappyBirthday();
+      }
+      else 
+      Manual();      
+   }
+      
+}
+     
